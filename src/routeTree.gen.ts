@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as CalendarRouteImport } from './routes/calendar'
+import { Route as ChatRouteImport } from './routes/chat'
 import { Route as EmailGeneratorRouteImport } from './routes/email-generator'
 import { Route as MeetingNotesRouteImport } from './routes/meeting-notes'
 import { Route as SettingsRouteImport } from './routes/settings'
@@ -24,6 +27,21 @@ const IndexRoute = IndexRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EmailGeneratorRoute = EmailGeneratorRouteImport.update({
@@ -50,6 +68,9 @@ const TaskPlannerRoute = TaskPlannerRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/analytics': typeof AnalyticsRoute
+  '/calendar': typeof CalendarRoute
+  '/chat': typeof ChatRoute
   '/email-generator': typeof EmailGeneratorRoute
   '/meeting-notes': typeof MeetingNotesRoute
   '/settings': typeof SettingsRoute
@@ -58,6 +79,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/analytics': typeof AnalyticsRoute
+  '/calendar': typeof CalendarRoute
+  '/chat': typeof ChatRoute
   '/email-generator': typeof EmailGeneratorRoute
   '/meeting-notes': typeof MeetingNotesRoute
   '/settings': typeof SettingsRoute
@@ -67,6 +91,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/analytics': typeof AnalyticsRoute
+  '/calendar': typeof CalendarRoute
+  '/chat': typeof ChatRoute
   '/email-generator': typeof EmailGeneratorRoute
   '/meeting-notes': typeof MeetingNotesRoute
   '/settings': typeof SettingsRoute
@@ -77,6 +104,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/analytics'
+    | '/calendar'
+    | '/chat'
     | '/email-generator'
     | '/meeting-notes'
     | '/settings'
@@ -85,6 +115,9 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/analytics'
+    | '/calendar'
+    | '/chat'
     | '/email-generator'
     | '/meeting-notes'
     | '/settings'
@@ -93,6 +126,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/analytics'
+    | '/calendar'
+    | '/chat'
     | '/email-generator'
     | '/meeting-notes'
     | '/settings'
@@ -102,6 +138,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AnalyticsRoute: typeof AnalyticsRoute
+  CalendarRoute: typeof CalendarRoute
+  ChatRoute: typeof ChatRoute
   EmailGeneratorRoute: typeof EmailGeneratorRoute
   MeetingNotesRoute: typeof MeetingNotesRoute
   SettingsRoute: typeof SettingsRoute
@@ -122,6 +161,27 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/email-generator': {
@@ -158,6 +218,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AnalyticsRoute: AnalyticsRoute,
+  CalendarRoute: CalendarRoute,
+  ChatRoute: ChatRoute,
   EmailGeneratorRoute: EmailGeneratorRoute,
   MeetingNotesRoute: MeetingNotesRoute,
   SettingsRoute: SettingsRoute,
