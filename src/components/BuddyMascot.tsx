@@ -114,7 +114,7 @@ export function BuddyMascot({
               <animate attributeName="opacity" values="0.2;1;0.2" dur="1.1s" repeatCount="indefinite" begin="0s" />
             </circle>
             <circle cx="32" cy="43" r="2">
-              <animate attributeName="opacity" values="0.2;1;0.2" dur="1.1s" repeatCount="indefinite" begin="0.２s" />
+              <animate attributeName="opacity" values="0.2;1;0.2" dur="1.1s" repeatCount="indefinite" begin="0.2s" />
             </circle>
             <circle cx="38" cy="43" r="2">
               <animate attributeName="opacity" values="0.2;1;0.2" dur="1.1s" repeatCount="indefinite" begin="0.4s" />
