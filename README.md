@@ -1,301 +1,391 @@
-# FlowState AI
+# Buddy.AI
+## Your Smart Productivity Assistant
 
-Absolutely. Since you'll likely be using Lovable AI, v0, Bolt.new, or another AI website builder, the more detailed your prompt is, the better the result.
+## Project Overview
 
-Here's a prompt designed to produce a modern, minimal, professional application.
+Buddy.AI is an AI-powered workplace productivity assistant designed to help users manage tasks, improve communication, organise meetings, and increase daily productivity.
 
-Prompt
+The application provides an intelligent digital workspace that combines artificial intelligence, task management, scheduling, analytics, and communication tools into one platform.
 
-Build a modern, minimalistic, AI-powered web application called AI Workplace Productivity Assistant.
+Buddy.AI is built as a modern SaaS application with a futuristic but minimalistic interface. The goal is to create a personal AI assistant that helps users work smarter, stay organised, and improve productivity.
 
-The application should have a clean, premium, corporate aesthetic inspired by Apple, Notion, Linear, and Microsoft Fluent Design. Avoid clutter and overwhelming layouts. The design should feel spacious, elegant, and easy to navigate with generous white space.
+---
 
-Design Style
+# Features Implemented
 
-Minimalistic and modern.
+## AI Dashboard
 
-Rounded cards (12–16px border radius).
+The dashboard provides users with a complete overview of their productivity.
 
-Soft shadows.
+Features include:
 
-Clean spacing between sections.
+- Personalised welcome dashboard
+- Animated Buddy AI assistant mascot
+- Real-time date and time display
+- Productivity overview cards
+- Motivational productivity quotes
+- Productivity score tracking
+- AI usage statistics
+- AI-generated productivity insights
 
-Smooth animations and subtle hover effects.
+---
 
-Glassmorphism only where appropriate (very subtle).
+## Chat With Buddy AI
 
-No bright gradients covering the whole page.
+A ChatGPT-style AI assistant that allows users to communicate with Buddy.
 
-Professional appearance suitable for an office environment.
+Features:
 
-Colour Palette
+- AI-powered conversations
+- Message history
+- Typing animation
+- Auto-scrolling chat
+- Suggested prompts
+- Productivity recommendations
 
-Use mostly neutral colours with tasteful accents.
+Users can ask Buddy to:
 
-Primary:
+- Plan their day
+- Generate ideas
+- Summarise information
+- Provide productivity advice
+- Assist with workplace tasks
 
-#2563EB (Blue)
+---
 
-Accent:
+## Smart Email Generator
 
-#10B981 (Emerald Green)
+An AI-powered email assistant that helps users create professional emails.
 
-#8B5CF6 (Purple)
+Users can generate:
 
-#F59E0B (Amber)
+- Professional emails
+- Follow-up emails
+- Leave requests
+- Apology emails
+- Meeting invitations
+- Thank-you messages
 
-Background:
+Features:
 
-#F8FAFC
+- Recipient input
+- Email purpose selection
+- Tone selection
+- Additional information input
+- AI-generated email responses
 
-Cards:
+Actions available:
 
-White
+- Copy
+- Regenerate
+- Improve
+- Shorten
+- Expand
+- Clear
 
-Text:
+---
 
-Dark Grey (#111827)
+## Meeting Note Summary
 
-Use accent colours sparingly for buttons, icons, highlights, and status indicators to make the interface pop without becoming overwhelming.
+An AI tool that converts meeting notes into structured summaries.
 
-Typography
+Supported file formats:
 
-Use a modern font combination:
+- PDF
+- DOCX
+- TXT
 
-Headings:
+Buddy AI generates:
 
-Poppins SemiBold
+- Meeting summaries
+- Action items
+- Important decisions
+- Deadlines
+- Follow-up tasks
 
-Body:
+---
 
-Inter
+## AI Task Planner
 
-Numbers and Statistics:
+A smart task management system designed to improve organisation and productivity.
 
-Space Grotesk
+Features:
 
-Keep typography consistent with a clear hierarchy.
+- Create tasks
+- Edit tasks
+- Delete tasks
+- Assign priorities
+- Add due dates
+- Mark tasks as completed
+- Drag-and-drop organisation
+- Progress tracking
+- Deadline countdown
 
-Layout
+Buddy AI assists by:
 
-The application should contain:
+- Recommending task priorities
+- Suggesting deadlines
+- Estimating completion times
+- Suggesting the best task order
 
-Left Sidebar
+---
 
-Logo
+## Smart Calendar
 
-Dashboard
+An interactive calendar system for managing important dates and activities.
 
-Smart Email Generator
+Features:
 
-Meeting Notes Summarizer
+- Monthly calendar view
+- Current date highlighting
+- Meetings
+- Deadlines
+- Reminders
+- Date information panels
 
-AI Task Planner
+---
 
-Settings
+## AI Analytics
 
-About
+A productivity analytics dashboard that tracks user performance.
 
-The sidebar should be collapsible on desktop and transform into a hamburger menu on mobile devices.
+Includes:
 
-Top Navigation Bar
+- Weekly AI usage statistics
+- AI interaction tracking
+- Activity graphs
+- Most-used AI features
+- Productivity trends
 
-Display:
+---
 
-Welcome message
+## Buddy Insights
 
-User profile/avatar
+AI-generated productivity insights based on user activity.
 
-Notification icon
+Examples:
 
-Live Date
+- Weekly goal completion
+- Productivity patterns
+- Time saved using AI
+- Areas for improvement
 
-Live Time
+---
 
-The date and time must update automatically every second using JavaScript (real-time clock). Do not hardcode the values.
+## Settings and Customisation
 
-Dashboard
+Users can customise their Buddy.AI experience.
 
-Show only three feature cards:
+Settings include:
 
-📧 Smart Email Generator
+- Profile settings
+- AI preferences
+- Notifications
+- Theme selection
+- Accent colours
+- Accessibility settings
+- Privacy settings
+- Language preferences
 
-📝 Meeting Notes Summarizer
+---
 
-📅 AI Task Planner
+# Design Features
 
-Each card should contain:
+Buddy.AI uses a premium SaaS design system focused on simplicity and usability.
 
-Modern icon
+Design elements:
 
-Short description
+- Dark mode interface
+- Glassmorphism design
+- Modern typography
+- Gradient backgrounds
+- Neon accent colours
+- Smooth animations
+- Responsive layouts
+- Rounded UI components
+- Interactive cards
 
-"Open Tool" button
+Design goals:
 
-Cards should have hover animations and subtle scaling.
+- Futuristic
+- Minimalistic
+- Professional
+- Easy to use
+- Not overwhelming
 
-Smart Email Generator Page
+---
 
-Left panel:
+# Technologies and Tools Used
 
-Recipient
+## Frontend
 
-Subject (optional)
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Router
+- Lucide React Icons
+- React Hook Form
+- Zustand
+- Recharts
 
-Email Purpose
+## Backend
 
-Key Points
+- Node.js
+- Express.js
+- PostgreSQL
+- Authentication system
 
-Tone dropdown:
+## AI Integration
 
-Formal
+- OpenAI API or configurable AI provider
 
-Friendly
+## Development Tools
 
-Persuasive
+- Visual Studio Code
+- Git
+- GitHub
+- npm
+- Figma
 
-Right panel:
-Generated Email
+---
 
-Buttons:
+# Project Structure
 
-Generate
+```
+Buddy.AI
 
-Copy
+├── frontend
+│   ├── components
+│   ├── pages
+│   ├── hooks
+│   ├── store
+│   └── assets
+│
+├── backend
+│   ├── controllers
+│   ├── routes
+│   ├── models
+│   └── server
+│
+├── database
+│
+├── README.md
+└── package.json
+```
 
-Clear
+---
 
-Meeting Notes Summarizer Page
+# Setup Instructions
 
-Large textarea for meeting notes.
+## Requirements
 
-AI Output should display:
+Install the following:
 
-Executive Summary
+- Node.js
+- npm
+- PostgreSQL
+- Git
 
-Key Decisions
 
-Action Items
+## Clone Repository
 
-Deadlines
+```bash
+git clone https://github.com/yourusername/buddy-ai.git
+```
 
-Buttons:
+Navigate into the project:
 
-Summarize
+```bash
+cd buddy-ai
+```
 
-Copy
+---
 
-Clear
+# Frontend Setup
 
-AI Task Planner Page
+Navigate to the frontend folder:
 
-User enters:
+```bash
+cd frontend
+```
 
-Tasks
+Install dependencies:
 
-Due Dates (optional)
+```bash
+npm install
+```
 
-Working Hours
+Run the application:
 
-AI returns:
-
-Priority Level
-
-Suggested Daily Schedule
-
-Estimated Time Per Task
-
-Productivity Tips
-
-Buttons:
-
-Generate Plan
-
-Copy
-
-Clear
-
-Responsible AI Notice
-
-Add a clean information card stating:
-
-"AI-generated content may contain inaccuracies. Always review generated outputs before using them professionally. Do not enter confidential or sensitive workplace information."
-
-Responsiveness
-
-Fully responsive for:
-
-Desktop
-
-Tablet
-
-Mobile
-
-The interface should adapt smoothly to all screen sizes.
-
-Animations
-
-Include:
-
-Fade-in page transitions
-
-Button ripple or hover effects
-
-Card lift on hover
-
-Smooth sidebar animations
-
-Loading spinner while AI generates content
-
-Accessibility
-
-High colour contrast
-
-Keyboard navigation
-
-ARIA labels
-
-Focus indicators
-
-Responsive typography
-
-Technical Requirements
-
-HTML5
-
-CSS3
-
-JavaScript (ES6+)
-
-Modular code structure
-
-Real-time JavaScript clock for date and time
-
-Clean, reusable components
-
-Overall Goal
-
-Create a polished, premium-looking AI productivity application that feels like a real commercial SaaS product. The interface should be simple, elegant, uncluttered, and intuitive, with plenty of white space and subtle use of colour to draw attention to important actions rather than overwhelming the user.
-
- Instead of calling the home page "Dashboard", rename it "Workspace." It gives the application a more premium, modern feel (similar to Notion, ClickUp, and Microsoft Copilot), while still meeting your project requirements. It also reinforces the idea that users are entering an AI-powered work environment rather than just viewing statistics.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/c6c41836-a928-4af4-bcaf-aa70e3280364).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+```bash
 npm run dev
 ```
+
+Frontend will run on:
+
+```
+http://localhost:5173
+```
+
+---
+
+# Backend Setup
+
+Navigate to the backend folder:
+
+```bash
+cd backend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env` file:
+
+```env
+PORT=5000
+
+DATABASE_URL=your_database_connection
+
+OPENAI_API_KEY=your_api_key
+
+JWT_SECRET=your_secret_key
+```
+
+Start the backend:
+
+```bash
+npm run server
+```
+
+Backend will run on:
+
+```
+http://localhost:5000
+```
+
+---
+
+# Future Improvements
+
+Planned improvements:
+
+- Voice assistant support
+- Calendar integrations
+- Mobile application
+- Team collaboration features
+- Advanced AI automation
+- Personalised AI learning
+- Smart notifications
+
+---
+
+# License
+
+MIT License
+````
