@@ -77,20 +77,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Buddy.AI — Your Smart Productivity Assistant" },
+      { title: "Dashboard — Buddy.AI Productivity Assistant" },
       {
         name: "description",
         content:
-          "Buddy.AI is a futuristic AI workspace for emails, meeting summaries, task planning and chat.",
+          "Buddy.AI dashboard: live clock, productivity stats, AI usage analytics and quick access to every assistant.",
       },
-      { property: "og:title", content: "Buddy.AI — Your Smart Productivity Assistant" },
+      { property: "og:title", content: "Dashboard — Buddy.AI Productivity Assistant" },
       {
         property: "og:description",
         content:
-          "Buddy.AI is a futuristic AI workspace for emails, meeting summaries, task planning and chat.",
+          "Buddy.AI dashboard: live clock, productivity stats, AI usage analytics and quick access to every assistant.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Dashboard — Buddy.AI Productivity Assistant" },
+      { name: "twitter:description", content: "Buddy.AI dashboard: live clock, productivity stats, AI usage analytics and quick access to every assistant." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/eb978f9b-d4ef-457d-acf0-6477d0426f18/id-preview-8177c769--c6c41836-a928-4af4-bcaf-aa70e3280364.lovable.app-1785442865640.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/eb978f9b-d4ef-457d-acf0-6477d0426f18/id-preview-8177c769--c6c41836-a928-4af4-bcaf-aa70e3280364.lovable.app-1785442865640.png" },
     ],
     links: [
       {

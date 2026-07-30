@@ -30,7 +30,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Dashboard — Buddy.AI Productivity Assistant" },
       {
         property: "og:description",
-        content: "Your smart productivity assistant: tasks, focus time and AI insights at a glance.",
+        content: "Buddy.AI dashboard: live clock, productivity stats, AI usage analytics and quick access to every assistant.",
       },
     ],
   }),
