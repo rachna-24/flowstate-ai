@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
-import { Eraser, Sparkles } from "lucide-react";
+import { Eraser, RefreshCw, Sparkles } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import {
   ActionButton,
@@ -12,58 +12,86 @@ import {
   PageHeader,
   controlClass,
 } from "@/components/tool-ui";
-import { generateEmail } from "@/lib/ai.functions";
+import { generateEmail, refineEmail } from "@/lib/ai.functions";
+import { useAppStore } from "@/store/useAppStore";
 
 export const Route = createFileRoute("/email-generator")({
   head: () => ({
     meta: [
-      { title: "Smart Email Generator — AI Workplace Assistant" },
+      { title: "Smart Email Generator — Buddy.AI" },
       {
         name: "description",
-        content: "Draft clear, professional business emails in a formal, friendly or persuasive tone.",
+        content:
+          "Generate professional, follow-up, apology, thank-you and meeting invitation emails with Buddy.AI.",
       },
-      { property: "og:title", content: "Smart Email Generator — AI Workplace Assistant" },
+      { property: "og:title", content: "Smart Email Generator — Buddy.AI" },
       {
         property: "og:description",
-        content: "Draft clear, professional business emails in a formal, friendly or persuasive tone.",
+        content: "Draft polished business emails in seconds, then improve, shorten or expand them.",
       },
     ],
   }),
   component: EmailGenerator,
 });
 
+const TYPES = [
+  "Professional email",
+  "Follow-up email",
+  "Leave request",
+  "Apology email",
+  "Meeting invitation",
+  "Thank-you email",
+] as const;
+
+const TONES = ["Formal", "Friendly", "Persuasive", "Apologetic", "Enthusiastic"] as const;
+
 function EmailGenerator() {
   const call = useServerFn(generateEmail);
+  const refine = useServerFn(refineEmail);
+  const track = useAppStore((s) => s.trackUse);
+
   const [recipient, setRecipient] = useState("");
-  const [subject, setSubject] = useState("");
+  const [type, setType] = useState<string>(TYPES[0]);
   const [purpose, setPurpose] = useState("");
-  const [keyPoints, setKeyPoints] = useState("");
-  const [tone, setTone] = useState<"Formal" | "Friendly" | "Persuasive">("Formal");
+  const [extra, setExtra] = useState("");
+  const [tone, setTone] = useState<(typeof TONES)[number]>("Formal");
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const clear = () => {
     setRecipient("");
-    setSubject("");
     setPurpose("");
-    setKeyPoints("");
-    setTone("Formal");
+    setExtra("");
     setOutput("");
     setError(null);
   };
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const generate = async () => {
     if (!purpose.trim()) return;
     setLoading(true);
     setError(null);
-    setOutput("");
     try {
-      const res = await call({ data: { recipient, subject, purpose, keyPoints, tone } });
+      const res = await call({ data: { recipient, purpose, type, extra, tone } });
       setOutput(res.text);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      track("Smart Email Generator");
+    } catch {
+      setError("Buddy couldn't generate that email. Please try again in a moment.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const applyRefine = async (action: "Improve" | "Shorten" | "Expand") => {
+    if (!output) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await refine({ data: { text: output, action } });
+      setOutput(res.text);
+      track("Smart Email Generator");
+    } catch {
+      setError("Buddy couldn't revise that email. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -73,52 +101,58 @@ function EmailGenerator() {
     <AppShell>
       <PageHeader
         eyebrow="Smart Email Generator"
-        title="Write the email in one pass"
-        description="Give the assistant the essentials and it will produce a ready-to-send draft in your chosen tone."
+        title="Write the email in seconds 📧"
+        description="Tell Buddy who it's for and what it's about. Then refine the draft until it sounds exactly like you."
       />
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <form onSubmit={submit} className="surface space-y-4 p-5 sm:p-6">
-          <Field label="Recipient" htmlFor="recipient">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            void generate();
+          }}
+          className="glass-panel space-y-4 p-5 sm:p-6"
+        >
+          <Field label="Email type" htmlFor="type">
+            <select id="type" className={controlClass} value={type} onChange={(e) => setType(e.target.value)}>
+              {TYPES.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </Field>
+
+          <Field label="Recipient" htmlFor="recipient" optional>
             <input
               id="recipient"
               className={controlClass}
-              placeholder="Priya Nair, Head of Operations"
+              placeholder="Maya, Head of Partnerships"
               value={recipient}
               onChange={(e) => setRecipient(e.target.value)}
             />
           </Field>
 
-          <Field label="Subject" htmlFor="subject" optional>
-            <input
-              id="subject"
-              className={controlClass}
-              placeholder="Q3 rollout timeline"
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-            />
-          </Field>
-
-          <Field label="Email Purpose" htmlFor="purpose">
+          <Field label="Purpose" htmlFor="purpose">
             <textarea
               id="purpose"
               required
               rows={3}
               className={controlClass}
-              placeholder="Ask for a one-week extension on the rollout deadline."
+              placeholder="Ask for a two-day extension on the Q3 report."
               value={purpose}
               onChange={(e) => setPurpose(e.target.value)}
             />
           </Field>
 
-          <Field label="Key Points" htmlFor="key-points" optional>
+          <Field label="Additional information" htmlFor="extra" optional>
             <textarea
-              id="key-points"
+              id="extra"
               rows={4}
               className={controlClass}
-              placeholder={"One point per line\nVendor delay of three days\nQA still in progress"}
-              value={keyPoints}
-              onChange={(e) => setKeyPoints(e.target.value)}
+              placeholder="Data from the vendor arrived late; draft is 80% complete."
+              value={extra}
+              onChange={(e) => setExtra(e.target.value)}
             />
           </Field>
 
@@ -127,36 +161,53 @@ function EmailGenerator() {
               id="tone"
               className={controlClass}
               value={tone}
-              onChange={(e) => setTone(e.target.value as typeof tone)}
+              onChange={(e) => setTone(e.target.value as (typeof TONES)[number])}
             >
-              <option>Formal</option>
-              <option>Friendly</option>
-              <option>Persuasive</option>
+              {TONES.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
             </select>
           </Field>
 
-          <div className="flex flex-wrap gap-2.5 pt-1">
+          <div className="flex flex-wrap gap-2 pt-1">
             <ActionButton type="submit" disabled={loading || !purpose.trim()}>
               <Sparkles className="size-4" /> Generate
             </ActionButton>
-            <CopyButton value={output} />
             <ActionButton type="button" variant="ghost" onClick={clear}>
               <Eraser className="size-4" /> Clear
             </ActionButton>
           </div>
+          <AiNotice />
         </form>
 
-        <OutputPanel
-          title="Generated Email"
-          loading={loading}
-          error={error}
-          value={output}
-          placeholder="Your generated email will appear here."
-        />
-      </div>
-
-      <div className="mt-6">
-        <AiNotice />
+        <div className="space-y-4">
+          <OutputPanel
+            title="Generated email"
+            loading={loading}
+            error={error}
+            value={output}
+            placeholder="Your polished email will appear here."
+            actions={output ? <CopyButton value={output} /> : null}
+          />
+          {output && (
+            <div className="flex flex-wrap gap-2">
+              <ActionButton variant="ghost" disabled={loading} onClick={() => void generate()}>
+                <RefreshCw className="size-4" /> Regenerate
+              </ActionButton>
+              <ActionButton variant="ghost" disabled={loading} onClick={() => void applyRefine("Improve")}>
+                Improve
+              </ActionButton>
+              <ActionButton variant="ghost" disabled={loading} onClick={() => void applyRefine("Shorten")}>
+                Shorten
+              </ActionButton>
+              <ActionButton variant="ghost" disabled={loading} onClick={() => void applyRefine("Expand")}>
+                Expand
+              </ActionButton>
+            </div>
+          )}
+        </div>
       </div>
     </AppShell>
   );
